@@ -19,23 +19,33 @@ class Game
     puts @guess_array
   end
 
+  def warning
+    case @round
+    when 10
+      puts 'Two guesses remaining.'
+    when 11
+      puts 'BE CAREFUL. You only have one guess left.' if @round == 11
+    end
+  end
+
   def player_turn
     p @word_array
+    warning
     puts 'Guess a letter'
     letter = gets.chomp
     until letter.length == 1
       puts 'Uh oh. You entered more than one letter. Please try again'
       letter = gets.chomp
     end
+    @round += 1 unless @word_array.include?(letter)
     @word_array.each_with_index do |e, i|
       @guess_array[i] = letter if e == letter
     end
     puts @guess_array.join(' ')
-    @round += 1
   end
 
   def game_over?
-    true if @round == 13 || @guess_array == @word_array
+    true if @round == 12 || @guess_array == @word_array
   end
 
   def play_game
