@@ -32,11 +32,7 @@ class Game
     # 'c'
     p @guess_array
     @word_array.each_with_index do |e, i|
-      if e == letter
-        @guess_array[i] = letter
-      elsif e != letter
-        @guess_array[i] = '_'
-      end
+      @guess_array[i] = letter if e == letter
     end
     puts @guess_array.join(' ')
     @round += 1
