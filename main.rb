@@ -1,5 +1,7 @@
-require_relative 'Game.rb'
-require_relative 'RandomWord.rb'
+# frozen_string_literal: true
+
+require_relative 'game'
+require_relative 'random_word'
 
 puts 'Welcome to hangman!'
 Game.new
