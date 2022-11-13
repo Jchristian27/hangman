@@ -3,6 +3,50 @@
 # A class for playing the game
 class Game
   def initialize
-    puts RandomWord.new.random_word
+    @word = RandomWord.new.random_word
+    @length = @word.length
+    @guess_array = []
+    @length.times do
+      @guess_array.push('_')
+    end
+    @word_array = @word.split('')
+    @word_array.pop
+    @guess = nil
+    @round = 0
+  end
+
+  def display_word
+    puts word_array
+  end
+
+  def player_turn
+    p @word_array
+    puts 'Guess a letter'
+    letter = gets.chomp
+    until letter.length == 1
+      puts 'Uh oh. You entered more than one letter. Please try again'
+      letter = gets.chomp
+    end
+
+    # ['c', 'a', 't']
+    # 'c'
+    p @guess_array
+    @word_array.each_with_index do |e, i|
+      if e == letter
+        @guess_array[i] = letter
+      elsif e != letter
+        @guess_array[i] = '_'
+      end
+    end
+    puts @guess_array.join(' ')
+    @round += 1
+  end
+
+  def game_over?
+    true if @round == 13 # || guess_array == word_array
+  end
+
+  def play_game
+    player_turn until game_over?
   end
 end
