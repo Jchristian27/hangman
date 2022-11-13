@@ -18,7 +18,7 @@ until answer.between?(1, 2)
 end
 case answer
 when 1
-  Game.new
+  Game.new.play_game
 when 2
   puts 'Loading file!'
 end
