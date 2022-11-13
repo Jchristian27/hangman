@@ -6,7 +6,7 @@ class Game
     @word = RandomWord.new.random_word
     @length = @word.length
     @guess_array = []
-    @length.times do
+    (@length - 1).times do
       @guess_array.push('_')
     end
     @word_array = @word.split('')
@@ -35,7 +35,7 @@ class Game
   end
 
   def game_over?
-    true if @round == 13 # || guess_array == word_array
+    true if @round == 13 || @guess_array == @word_array
   end
 
   def play_game
