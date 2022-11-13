@@ -15,8 +15,8 @@ class Game
     @round = 0
   end
 
-  def display_word
-    puts word_array
+  def display_guess
+    puts @guess_array
   end
 
   def player_turn
@@ -27,10 +27,6 @@ class Game
       puts 'Uh oh. You entered more than one letter. Please try again'
       letter = gets.chomp
     end
-
-    # ['c', 'a', 't']
-    # 'c'
-    p @guess_array
     @word_array.each_with_index do |e, i|
       @guess_array[i] = letter if e == letter
     end
