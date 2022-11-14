@@ -6,17 +6,19 @@ class Game
     @word = RandomWord.new.random_word
     @length = @word.length
     @guess_array = []
-    (@length - 1).times do
-      @guess_array.push('_')
-    end
     @word_array = @word.split('')
     @word_array.pop
     @guess = nil
     @round = 0
+    puts "\nYour word has been chosen. It has #{@length - 1} characters\n\n"
+    (@length - 1).times do
+      @guess_array.push('_')
+    end
+    puts "#{@guess_array.join(' ')}\n\n"
   end
 
   def display_guess
-    puts @guess_array
+    print @guess_array
   end
 
   def warning
@@ -29,7 +31,7 @@ class Game
   end
 
   def player_turn
-    p @word_array
+    #p @word_array
     warning
     puts 'Guess a letter'
     letter = gets.chomp
