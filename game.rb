@@ -31,7 +31,7 @@ class Game
     end
   end
 
-  def this_round_logic(letter)
+  def round_logic(letter)
     if @word_array.include?(letter)
       @word_array.each_with_index do |e, i|
         @guess_array[i] = letter if e == letter
@@ -40,10 +40,10 @@ class Game
       @wrong_letters.push(letter)
       @wrong_guesses += 1
     end
-    this_round_results
+    round_results
   end
 
-  def this_round_results
+  def round_results
     puts "\n#{@guess_array.join(' ')}\n\n"
     puts "Incorrect letters guessed: #{@wrong_letters.join(' ')}\n\n"
   end
@@ -58,7 +58,7 @@ class Game
       puts 'Uh oh. You either entered an invalid letter. Please enter a letter you haven\'t picked yet'
       letter = gets.chomp
     end
-    this_round_logic(letter)
+    round_logic(letter)
   end
 
   def game_over?
