@@ -31,6 +31,12 @@ class Game
     end
   end
 
+  def round_output
+    puts "You have #{8 - @wrong_guesses} incorrect guess(es) left.\n\n"
+    puts 'Your turn to guess a letter in the secret word.'
+    puts "You can also type 'save' or 'exit' to leave the game.\n\n"
+  end
+
   def round_logic(letter)
     if @word_array.include?(letter)
       @word_array.each_with_index do |e, i|
@@ -50,8 +56,7 @@ class Game
 
   def player_turn
     warning
-    puts 'Your turn to guess a letter in the secret word.'
-    puts "You can also type 'save' or 'exit' to leave the game.\n\n"
+    round_output
     letter = gets.chomp.downcase
     until letter.length == 1 && letter.match?(/[[:alpha:]]/) &&
           !@wrong_letters.include?(letter) && !@guess_array.include?(letter)
