@@ -52,7 +52,7 @@ class Game
     warning
     puts 'Your turn to guess a letter in the secret word.'
     puts "You can also type 'save' or 'exit' to leave the game.\n\n"
-    letter = gets.chomp
+    letter = gets.chomp.downcase
     until letter.length == 1 && letter.match?(/[[:alpha:]]/) &&
           !@wrong_letters.include?(letter) && !@guess_array.include?(letter)
       puts 'Uh oh. You either entered an invalid letter. Please enter a letter you haven\'t picked yet'
