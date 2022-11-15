@@ -67,5 +67,13 @@ class Game
 
   def play_game
     player_turn until game_over?
+    if @guess_array == @word_array
+      print 'CONGRATULATIONS! You figured out the secret word, '
+      print "with #{8 - @wrong_guesses} incorrect guess(es) remaining!\n\n"
+    elsif @wrong_guesses == 8
+      puts "You lost :(\n\n"
+      puts "The word you were trying to guess was #{@word}\n\n"
+      puts "¯\_(ツ)_/¯\n\n"
+    end
   end
 end
