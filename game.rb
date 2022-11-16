@@ -8,31 +8,24 @@ class Game
     @word_array = @word.split('')
     @word_array.pop
     @guess_array = []
-    @guess = nil
+    # @guess = nil
     @wrong_letters = []
     @wrong_guesses = 0
     puts "\nYour word has been chosen. It has #{@length - 1} characters\n\n"
-    (@length - 1).times do
-      @guess_array.push('_')
-    end
+    (@length - 1).times { @guess_array.push('_') }
     puts "#{@guess_array.join(' ')}\n\n"
   end
 
-  def display_guess
-    print @guess_array
-  end
-
-  def warning
-    case @wrong_guesses
-    when 6
-      puts 'Two guesses remaining.'
-    when 7
-      puts 'BE CAREFUL. You only have one guess left.'
-    end
-  end
+  # def display_guess
+  #   print @guess_array
+  # end
 
   def round_output
-    puts "You have #{8 - @wrong_guesses} incorrect guess(es) left.\n\n"
+    if @wrong_guesses == 7
+      puts "WARNING! You have 1 incorrect guess left.\n\n"
+    else
+      puts "You have #{8 - @wrong_guesses} incorrect guess(es) left.\n\n"
+    end
     puts 'Your turn to guess a letter in the secret word.'
     puts "You can also type 'save' or 'exit' to leave the game.\n\n"
   end
@@ -55,7 +48,6 @@ class Game
   end
 
   def player_turn
-    warning
     round_output
     letter = gets.chomp.downcase
     until letter.length == 1 && letter.match?(/[[:alpha:]]/) &&
@@ -77,7 +69,7 @@ class Game
       print "with #{8 - @wrong_guesses} incorrect guess(es) remaining!\n\n"
     elsif @wrong_guesses == 8
       puts "You lost :(\n\n"
-      puts "The word you were trying to guess was #{@word}\n\n"
+      puts "The word you were trying to guess was: #{@word}\n\n"
       puts "Better luck next time ¯\\_(ツ)_/¯\n\n"
     end
   end
