@@ -30,6 +30,11 @@ class Game
     puts "You can also type 'save' or 'exit' to leave the game.\n\n"
   end
 
+  def round_results
+    puts "\n#{@guess_array.join(' ')}\n\n"
+    puts "Incorrect letters guessed: #{@wrong_letters.join(' ')}\n\n"
+  end
+
   def round_logic(letter)
     if @word_array.include?(letter)
       @word_array.each_with_index do |e, i|
@@ -40,11 +45,6 @@ class Game
       @wrong_guesses += 1
     end
     round_results
-  end
-
-  def round_results
-    puts "\n#{@guess_array.join(' ')}\n\n"
-    puts "Incorrect letters guessed: #{@wrong_letters.join(' ')}\n\n"
   end
 
   def player_turn
