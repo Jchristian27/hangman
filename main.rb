@@ -9,7 +9,7 @@ puts 'To win, you must find all the letters in the word before using 8 incorrect
 puts "Let's play hangman in the console! Would you like to:"
 
 puts '[1] Play a new game'
-puts '[2] Load a saved game'
+puts "[2] Load a saved game\n\n"
 
 answer = gets.chomp.to_i
 until answer.between?(1, 2)
