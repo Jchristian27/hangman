@@ -1,3 +1,9 @@
-class Serialize
+module Serialize
+  def save
   
+  end
+
+  def load
+  
+  end
 end
