@@ -78,7 +78,7 @@ class Game
     elsif @wrong_guesses == 8
       puts "You lost :(\n\n"
       puts "The word you were trying to guess was #{@word}\n\n"
-      puts "¯\_(ツ)_/¯\n\n"
+      puts "Better luck next time ¯\\_(ツ)_/¯\n\n"
     end
   end
 end
