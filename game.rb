@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'yaml'
+
 # A class for playing the game
 class Game
   def initialize
@@ -8,7 +10,6 @@ class Game
     @word_array = @word.split('')
     @word_array.pop
     @guess_array = []
-    # @guess = nil
     @wrong_letters = []
     @wrong_guesses = 0
     puts "\nYour word has been chosen. It has #{@length - 1} characters\n\n"
@@ -16,9 +17,9 @@ class Game
     puts "#{@guess_array.join(' ')}\n\n"
   end
 
-  # def display_guess
-  #   print @guess_array
-  # end
+  def serialize
+    puts self.to_yaml
+  end
 
   def round_output
     if @wrong_guesses == 7
@@ -55,6 +56,7 @@ class Game
       puts 'Uh oh. You either entered an invalid letter. Please enter a letter you haven\'t picked yet'
       letter = gets.chomp
     end
+    serialize if letter == 'z'
     round_logic(letter)
   end
 
