@@ -16,7 +16,7 @@ class Game
   end
 
   def save_game
-    puts 'choose a name for your saved game file'
+    puts 'Choose a name for your saved game file'
     filename = gets.chomp.downcase.split(' ').join('-')
     serialized_game = YAML.dump(self)
     File.write("saved_games/#{filename}.yaml", serialized_game)
