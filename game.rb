@@ -34,7 +34,7 @@ class Game
       puts "You have #{8 - @wrong_guesses} incorrect guess(es) left.\n\n"
     end
     puts 'Your turn to guess a letter in the secret word.'
-    puts "You can also type 'save' or 'exit' to leave the game.\n\n"
+    puts "You can also type 'save' to save and exit your game.\n\n"
   end
 
   def round_results
