@@ -4,7 +4,7 @@ require_relative 'game'
 require_relative 'random_word'
 require 'yaml'
 
-puts 'How to play Hangman in the console.'
+puts 'How to play Hangman in the console:'
 puts 'A random word with 5-12 letters will be chosen. On each turn, you can guess one letter.'
 puts 'To win, you must find all the letters in the word before using 8 incorrect guesses.'
 puts "Let's play hangman in the console! Would you like to:"
@@ -22,11 +22,12 @@ when 1
   system('clear')
   Game.new.play_game
 when 2
-  if Dir.glob('saved/games').length == 0
+  if Dir.glob('saved_games').length == 0
     puts 'No saved game files exist!' 
   else
-    puts "\n\Enter the name of the game you would you like to load\n\n"
-    Dir.foreach("saved_games") { |file| puts "#{file}" if file.length > 2 }
+    puts "\nEnter the name of the game you would you like to load:\n\n"
+    Dir.foreach('saved_games') { |file| puts file.to_s if file.length > 2 }
+    puts "\n------------------------\n\n"
     file_name = gets.chomp
     game = YAML.load_file(
       "saved_games/#{file_name}", 
