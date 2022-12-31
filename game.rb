@@ -5,11 +5,11 @@ require 'open-uri'
 
 # A class for playing the game
 class Game
-  def initialize
-    @word = RandomWord.new.random_word
-    @guess_array = []
-    @wrong_letters = []
-    @wrong_guesses = 0
+  def initialize(**opts)
+    @word = opts[:word] || RandomWord.new.random_word
+    @guess_array = opts[:guess_array] || []
+    @wrong_letters = opts[:wrong_letters] || []
+    @wrong_guesses = opts[:wrong_guesses] || 0
     puts "\nYour word has been chosen. It has #{@word.length} characters\n\n"
     @word.length.times { @guess_array.push('_') }
     puts "#{@guess_array.join(' ')}\n\n"
@@ -18,8 +18,13 @@ class Game
   def save_game
     puts 'choose a name for your saved game file'
     filename = gets.chomp.downcase.split(' ').join('-')
-    serialized_game = self.to_yaml
+    serialized_game = YAML.dump(self)
     File.write("saved_games/#{filename}.yaml", serialized_game)
+  end
+
+  def self.load_game(yaml_string)
+    string = YAML.load(yaml_string)
+    puts string
   end
 
   def round_output

@@ -2,6 +2,7 @@
 
 require_relative 'game'
 require_relative 'random_word'
+require 'yaml'
 
 puts 'How to play Hangman in the console.'
 puts 'A random word with 5-12 letters will be chosen. On each turn, you can guess one letter.'
@@ -20,5 +21,14 @@ case answer
 when 1
   Game.new.play_game
 when 2
-  puts 'Loading file!'
+  puts "\n\Enter the name of the game you would you like to load\n\n"
+  Dir.foreach("saved_games") { |file| puts "#{file}\n" if file.length > 2 }
+  file_name = gets.chomp
+  game = YAML.load_file(
+    "saved_games/#{file_name}", 
+    permitted_classes: [Game]
+  )
+  system('clear')
+  game.round_results
+  game.play_game
 end
