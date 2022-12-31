@@ -1,1 +1,1 @@
-A command line hangman game built to learn about serialization.
+A command line hangman game built in ruby to learn about serialization.
