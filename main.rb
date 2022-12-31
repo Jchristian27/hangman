@@ -19,16 +19,21 @@ until answer.between?(1, 2)
 end
 case answer
 when 1
+  system('clear')
   Game.new.play_game
 when 2
-  puts "\n\Enter the name of the game you would you like to load\n\n"
-  Dir.foreach("saved_games") { |file| puts "#{file}\n" if file.length > 2 }
-  file_name = gets.chomp
-  game = YAML.load_file(
-    "saved_games/#{file_name}", 
-    permitted_classes: [Game]
-  )
-  system('clear')
-  game.round_results
-  game.play_game
+  if Dir.glob('saved/games').length == 0
+    puts 'No saved game files exist!' 
+  else
+    puts "\n\Enter the name of the game you would you like to load\n\n"
+    Dir.foreach("saved_games") { |file| puts "#{file}" if file.length > 2 }
+    file_name = gets.chomp
+    game = YAML.load_file(
+      "saved_games/#{file_name}", 
+      permitted_classes: [Game]
+    )
+    system('clear')
+    game.round_results
+    game.play_game
+  end
 end
