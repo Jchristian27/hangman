@@ -1,0 +1,15 @@
+--- !ruby/object:Game
+word: disagree
+guess_array:
+- _
+- _
+- _
+- a
+- _
+- _
+- e
+- e
+wrong_letters:
+- t
+- u
+wrong_guesses: 2
